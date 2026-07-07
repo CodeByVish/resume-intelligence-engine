@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.streamlit/
+data/sample_resumes/*
+data/sample_jobs/*
+.env
