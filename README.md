@@ -1,135 +1,154 @@
-# Resume Intelligence Engine
+# 🚀 Resume Intelligence Platform
 
-An AI-powered Resume Intelligence Platform for semantic candidate search, intelligent resume parsing, recruiter decision support, and Retrieval-Augmented Generation (RAG).
+An end-to-end AI Engineering project that transforms unstructured resumes into an intelligent, searchable knowledge base using NLP, semantic retrieval, vector search, and Retrieval-Augmented Generation (RAG).
 
 <p align="center">
-
-🚀 NLP • RAG • LLMs • Semantic Search • Vector Databases • Streamlit • LangChain • FAISS
-
+  <strong>NLP</strong> •
+  <strong>Semantic Search</strong> •
+  <strong>Vector Databases</strong> •
+  <strong>RAG</strong> •
+  <strong>Streamlit</strong> •
+  <strong>LangChain</strong> •
+  <strong>FAISS</strong>
 </p>
+
+---
 
 ## 🌸 Overview
 
-Recruiters often spend hours manually reviewing resumes and comparing candidates against job descriptions.
+Recruiters spend hours manually reviewing resumes, comparing applicants, identifying skill gaps, and deciding who deserves an interview.
 
-This project aims to automate that workflow by combining modern NLP techniques with semantic search and Retrieval-Augmented Generation (RAG).
+Traditional Applicant Tracking Systems (ATS) mostly rely on keyword matching, often missing highly qualified candidates simply because they use different wording.
 
-Instead of simply extracting text from resumes, the platform understands candidate profiles, evaluates job fit, ranks applicants, and provides explainable AI-assisted recommendations.
+**Resume Intelligence Platform** approaches the problem differently.
 
-## ✨ Features
+Instead of treating resumes as plain text documents, it converts them into structured knowledge that can be searched, ranked, retrieved, and queried using modern AI techniques.
 
-### Current
+The project combines classical NLP with semantic embeddings, vector search, and Retrieval-Augmented Generation (RAG) to create an explainable AI assistant for recruiters.
 
-✅ Resume PDF Parsing
+---
 
-✅ Structured Resume Extraction
+## 🎬 Demo
 
-✅ Contact Information Detection
+### 📹 Demo GIF
 
-✅ Resume Section Detection
+Replace this section with a GIF of the Streamlit application once complete.
 
-- Experience
-- Skills
-- Education
-- Projects
-- Certifications
-
-✅ Semantic Resume ↔ Job Description Matching
-
-✅ Skill-aware Matching Engine
-
-✅ Interactive Streamlit Dashboard
-
-### Coming Soon
-
-🔄 Multi-resume Batch Processing
-
-🔄 Candidate Ranking Dashboard
-
-🔄 FAISS Vector Database
-
-🔄 Resume Chunking
-
-🔄 Retrieval-Augmented Generation (RAG)
-
-🔄 Recruiter AI Assistant
-
-🔄 Interview Question Generation
-
-🔄 Skill Gap Analysis
-
-🔄 Candidate Comparison
-
-🔄 Recruiter Analytics Dashboard
-
-## 🏗 System Architecture
-
-```text
-                        PDF Resume
-                             │
-                             ▼
-                   Document Parsing Layer
-                             │
-                             ▼
-                 Structured Resume Profile
-                             │
-                             ▼
-             Semantic Matching Engine
-                             │
-                             ▼
-              Candidate Scoring Pipeline
-                             │
-                             ▼
-                  Recruiter Dashboard
-                             │
-                             ▼
-          (Upcoming)
-        Embeddings → FAISS → RAG → LLM
-```
-
-## 🛠 Tech Stack
-
-| Category | Technology |
-| --- | --- |
-| Language | Python |
-| Frontend | Streamlit |
-| Resume Parsing | PyMuPDF |
-| NLP | spaCy |
-| Semantic Matching | Sentence Transformers |
-| ML | scikit-learn |
-| Vector Search | FAISS (Upcoming) |
-| LLM Framework | LangChain (Upcoming) |
-| Agent Framework | LangGraph (Upcoming) |
+---
 
 ## 📸 Screenshots
 
-### Dashboard
+### Home Dashboard
 
-(Insert Streamlit Home Page Screenshot Here)
+Insert screenshot here.
 
 ### Resume Parsing
 
-(Insert Resume Parsing Screenshot Here)
+Insert screenshot here.
 
 ### Semantic Matching
 
-(Insert Resume Match Screenshot Here)
+Insert screenshot here.
 
 ### Candidate Ranking
 
-(Coming Soon)
+Insert screenshot here after batch ranking is implemented.
 
-## 🧠 Why this project?
+### RAG Chat Assistant
 
-Most resume screening tools rely heavily on keyword matching.
+Insert screenshot after implementation.
 
-This project moves beyond keyword search by introducing semantic similarity, structured resume understanding, and Retrieval-Augmented Generation to help recruiters make faster and more informed hiring decisions.
+---
+
+## ✨ Features
+
+### Document Intelligence
+
+- PDF resume parsing
+- Automatic resume section detection
+- Contact information extraction
+- Structured candidate profiles
+- Resume normalization
+
+### Semantic Candidate Matching
+
+- Resume ↔ job description matching
+- Embedding-based similarity
+- Skill-aware matching
+- Explainable match scores
+- Missing skill detection
+
+### AI & Retrieval
+
+- Dense vector embeddings
+- FAISS vector database
+- Resume chunking
+- Semantic resume search
+- Retrieval-Augmented Generation (RAG)
+
+### Recruiter Experience
+
+- Candidate ranking
+- Multi-resume upload
+- Resume comparison
+- Interview question generation
+- AI recruiter assistant
+
+---
+
+## 🧠 AI Pipeline
+
+```text
+                        Resume PDFs
+                              │
+                              ▼
+                  Document Parsing Pipeline
+                              │
+                              ▼
+                 Structured Resume Profiles
+                              │
+                              ▼
+                 Skill Extraction + NLP
+                              │
+                              ▼
+                  Embedding Generation
+                              │
+                              ▼
+                     FAISS Vector Store
+                              │
+                              ▼
+              Semantic Resume Retrieval
+                              │
+                              ▼
+             Retrieval-Augmented Generation
+                              │
+                              ▼
+                Recruiter AI Assistant
+```
+
+---
+
+## ⚙ Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| Language | Python |
+| Frontend | Streamlit |
+| Document Parsing | PyMuPDF |
+| NLP | spaCy |
+| Embeddings | Sentence Transformers |
+| Similarity | scikit-learn |
+| Vector Search | FAISS |
+| RAG Framework | LangChain |
+| Agent Workflow | LangGraph |
+| Data Processing | pandas, NumPy |
+
+---
 
 ## 📂 Project Structure
 
 ```text
 resume-intelligence-engine/
-
 │
 ├── app.py
 │
@@ -150,12 +169,14 @@ resume-intelligence-engine/
 └── README.md
 ```
 
-## 🚀 Getting Started
+---
+
+## 🚀 Running Locally
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/resume-intelligence-engine.git
+git clone https://github.com/CodeByVish/resume-intelligence-engine.git
 ```
 
 Install dependencies:
@@ -164,57 +185,71 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run:
+Run Streamlit:
 
 ```bash
 streamlit run app.py
 ```
 
-## 🎯 Roadmap
+---
 
-### Phase 1 ✅
+## 📊 Example Workflow
 
-- Resume Parsing
-- Structured Extraction
-- Skill-aware Matching
+```text
+Upload Resume(s)
+       ↓
+Parse Resume
+       ↓
+Extract Skills & Experience
+       ↓
+Generate Embeddings
+       ↓
+Compare Against Job Description
+       ↓
+Rank Candidates
+       ↓
+Retrieve Supporting Evidence
+       ↓
+Ask AI Questions
+       ↓
+Generate Interview Questions
+```
 
-### Phase 2 🚧
+---
 
-- Multi Resume Upload
-- Candidate Ranking
-- Recruiter Dashboard
+## 🎯 Engineering Highlights
 
-### Phase 3
+This repository demonstrates practical AI Engineering concepts including:
 
-- Embedding Generation
-- FAISS Vector Search
-- Resume Retrieval
-
-### Phase 4
-
+- NLP pipelines
+- Information extraction
+- Semantic search
+- Dense vector embeddings
+- Vector databases
 - Retrieval-Augmented Generation (RAG)
-- LangChain Integration
-- Recruiter AI Assistant
+- Explainable AI
+- Streamlit application development
+- Modular Python architecture
 
-### Phase 5
+---
 
-- LangGraph Agent Workflow
-- Candidate Comparison
-- Analytics Dashboard
+## 🔮 Future Enhancements
 
-## 📈 Future Improvements
-
-- OCR for scanned resumes
-- Fine-tuned skill extraction
-- ATS compatibility scoring
-- Resume recommendations
-- Recruiter PDF reports
+- Fine-tuned resume skill extraction
+- ATS compatibility analysis
+- Resume quality scoring
+- Multi-agent recruiter workflow
+- Recruiter analytics dashboard
 - Cloud deployment
+
+---
 
 ## 🤝 Contributing
 
-Contributions, feature requests, and discussions are always welcome.
+Contributions, discussions, and ideas are always welcome.
 
-## ⭐ If you found this project interesting...
+---
 
-Please consider starring the repository.
+## ⭐ If you enjoyed this project...
+
+Consider giving it a ⭐ on GitHub!
