@@ -1,13 +1,7 @@
-import os
-import json
-import tempfile
-
 import streamlit as st
 
-from src.parsing.pdf_parser import extract_text_from_pdf
-from src.parsing.profile_parser import build_resume_profile
-from src.scoring.batch_ranker import rank_resumes
-from src.scoring.skill_matcher_v2 import compute_match_score, VERSION as MATCHER_VERSION
+from src.services.resume_service import process_multiple_uploaded_resumes
+from src.services.ranking_service import score_single_resume, rank_resume_batch
 
 
 def render_list(title, items):
@@ -103,7 +97,7 @@ st.markdown(
     <div class="hero-card">
         <h1>AI Resume Copilot ✨</h1>
         <p class="soft-text">
-            Upload a resume, extract a structured profile, and build toward RAG-based resume matching and ranking.
+            Upload one or more resumes, extract structured profiles, and rank candidates against a job description.
         </p>
     </div>
     """,
@@ -143,7 +137,7 @@ with col3:
     )
 
 st.write("")
-st.subheader("Upload a resume PDF")
+st.subheader("Upload resumes")
 uploaded_files = st.file_uploader(
     "Choose one or more PDF files",
     type=["pdf"],
@@ -155,42 +149,22 @@ job_description = st.text_area(
     height=220,
     placeholder="Paste the job description recruiters would use for matching...",
 )
-st.caption(f"Matcher version: {MATCHER_VERSION}")
 
 if uploaded_files:
-    resume_profiles = []
+    resume_profiles = process_multiple_uploaded_resumes(uploaded_files)
 
-    for uploaded_file in uploaded_files:
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
-            tmp.write(uploaded_file.read())
-            temp_path = tmp.name
+    valid_profiles = [r for r in resume_profiles if r.get("raw_text")]
+    error_profiles = [r for r in resume_profiles if r.get("error")]
 
-        try:
-            raw_text = extract_text_from_pdf(temp_path)
-            profile = build_resume_profile(raw_text)
+    for item in error_profiles:
+        st.error(f"Failed to extract {item['filename']}: {item['error']}")
 
-            resume_profiles.append(
-                {
-                    "filename": uploaded_file.name,
-                    "raw_text": raw_text,
-                    "profile": profile,
-                }
-            )
+    if valid_profiles:
+        st.success(f"Extracted {len(valid_profiles)} resume(s) successfully.")
 
-        except Exception as e:
-            st.error(f"Failed to extract {uploaded_file.name}: {e}")
-        finally:
-            try:
-                os.remove(temp_path)
-            except OSError:
-                pass
-
-    if resume_profiles:
-        st.success(f"Extracted {len(resume_profiles)} resume(s) successfully.")
-
-        if len(resume_profiles) == 1:
-            profile = resume_profiles[0]["profile"]
-            raw_text = resume_profiles[0]["raw_text"]
+        if len(valid_profiles) == 1:
+            profile = valid_profiles[0]["profile"]
+            raw_text = valid_profiles[0]["raw_text"]
 
             tab1, tab2, tab3 = st.tabs(["Extracted Text", "Structured Profile", "Raw JSON"])
 
@@ -223,12 +197,14 @@ if uploaded_files:
             with tab3:
                 st.json(profile)
 
+        st.caption("Matcher version: v2")
+
         if st.button("Score Against Job Description"):
             if not job_description.strip():
                 st.warning("Please paste a job description first.")
             else:
-                if len(resume_profiles) == 1:
-                    result = compute_match_score(resume_profiles[0]["raw_text"], job_description)
+                if len(valid_profiles) == 1:
+                    result = score_single_resume(valid_profiles[0]["raw_text"], job_description)
 
                     score = result.get("score", 0.0)
                     semantic_score = result.get("semantic_score", score)
@@ -238,7 +214,6 @@ if uploaded_files:
 
                     st.markdown("## Match Score")
                     st.metric("Resume match", f"{score}%")
-
                     st.caption(
                         f"Semantic score: {semantic_score}% | Keyword score: {keyword_score}%"
                     )
@@ -260,7 +235,7 @@ if uploaded_files:
                             st.caption("No major missing terms found.")
 
                 else:
-                    df = rank_resumes(resume_profiles, job_description)
+                    df = rank_resume_batch(valid_profiles, job_description)
 
                     st.markdown("## Ranked Candidates")
 
