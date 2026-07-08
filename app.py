@@ -263,15 +263,41 @@ if uploaded_files:
                     df = rank_resumes(resume_profiles, job_description)
 
                     st.markdown("## Ranked Candidates")
-                    st.dataframe(df, use_container_width=True)
 
-                    st.markdown("### Top Candidate")
-                    top_row = df.iloc[0]
-                    st.write(f"**File:** {top_row['filename']}")
-                    st.write(f"**Score:** {top_row['score']}%")
-                    st.write(f"**Semantic score:** {top_row['semantic_score']}%")
-                    st.write(f"**Keyword score:** {top_row['keyword_score']}%")
-                    st.write(f"**Matched terms:** {top_row['matched_terms']}")
-                    st.write(f"**Missing terms:** {top_row['missing_terms']}")
+                    display_df = df[
+                        [
+                            "filename",
+                            "score",
+                            "semantic_score",
+                            "keyword_score",
+                            "matched_terms",
+                            "missing_terms",
+                        ]
+                    ]
+
+                    st.dataframe(display_df, use_container_width=True, hide_index=True)
+
+                    st.markdown("### Top 3 Candidates")
+
+                    top_n = df.head(3)
+                    if not top_n.empty:
+                        cols = st.columns(len(top_n))
+                        for idx, (_, row) in enumerate(top_n.iterrows()):
+                            with cols[idx]:
+                                st.markdown(
+                                    f"""
+                                    <div class="metric-card">
+                                        <h3>#{idx + 1}</h3>
+                                        <p><strong>{row['filename']}</strong></p>
+                                        <p><strong>Score:</strong> {row['score']}%</p>
+                                        <p><strong>Semantic:</strong> {row['semantic_score']}%</p>
+                                        <p><strong>Keyword:</strong> {row['keyword_score']}%</p>
+                                    </div>
+                                    """,
+                                    unsafe_allow_html=True,
+                                )
+                                st.progress(min(float(row["score"]) / 100.0, 1.0))
+                                st.caption(f"Matched terms: {row['matched_terms'] or 'None'}")
+                                st.caption(f"Missing terms: {row['missing_terms'] or 'None'}")
 else:
     st.info("Upload one or more PDFs to see parsed resumes here.")
