@@ -24,6 +24,11 @@ def main():
         page.goto(args.url)
         expect(page.get_by_role("button", name="Compare resumes")).to_be_visible()
 
+        page.evaluate("document.fonts.ready")
+        assert "Cormorant Garamond" in page.locator("h1").evaluate("el => getComputedStyle(el).fontFamily")
+        assert "Inter" in page.locator("textarea").evaluate("el => getComputedStyle(el).fontFamily")
+        assert page.evaluate("document.fonts.check(\"500 20px \'Cormorant Garamond\'\")")
+
         def capture():
             page.wait_for_timeout(600)
             assert page.locator('[data-testid="stException"]').count() == 0
@@ -36,13 +41,13 @@ def main():
         expect(page.get_by_text("resume_alice.pdf", exact=True)).to_be_visible()
         capture()
         page.get_by_role("button", name="Compare resumes", exact=True).click()
-        expect(page.get_by_text("3. Review the matches", exact=True)).to_be_visible()
+        expect(page.get_by_text("Your matches", exact=True)).to_be_visible()
         expect(page.get_by_text("Hybrid", exact=True)).to_be_visible()
-        page.get_by_text("3. Review the matches", exact=True).scroll_into_view_if_needed()
+        page.get_by_text("Your matches", exact=True).evaluate("el => el.scrollIntoView({block: 'start'})")
         capture()
         page.get_by_role("button", name="Find evidence", exact=True).click()
         expect(page.get_by_text("resume_alice.pdf · similarity", exact=False)).to_be_visible()
-        page.get_by_role("button", name="Find evidence", exact=True).scroll_into_view_if_needed()
+        page.get_by_role("button", name="Find evidence", exact=True).evaluate("el => el.scrollIntoView({block: 'start'})")
         capture()
         page.locator(".hero").scroll_into_view_if_needed()
         page.screenshot(path=str(output.with_suffix(".png")))
@@ -53,9 +58,9 @@ def main():
         page.goto(args.url)
         expect(page.get_by_role("button", name="Compare resumes")).to_be_visible()
         page.locator('input[type="file"]').set_input_files([str(pdfs[0])])
-        expect(page.get_by_text("3. Review the matches", exact=True)).not_to_be_visible()
+        expect(page.get_by_text("Your matches", exact=True)).not_to_be_visible()
         page.get_by_role("button", name="Compare resumes", exact=True).click()
-        expect(page.get_by_text("3. Review the matches", exact=True)).to_be_visible()
+        expect(page.get_by_text("Your matches", exact=True)).to_be_visible()
         assert page.locator('[data-testid="stException"]').count() == 0
         expect(page.locator('[data-testid="stMetricValue"]').first).to_have_text("1")
         page.set_viewport_size({"width": 390, "height": 844})
