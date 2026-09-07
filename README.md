@@ -9,7 +9,7 @@ An explainable resume-matching prototype for recruiters comparing candidates and
 
 ![Demo: upload three fictional PDFs, compare matches, and retrieve supporting resume excerpts](assets/demo.gif)
 
-*Actual local app capture with fictional resumes. [Still screenshot](assets/demo.png) · [Reproduce the recording](examples/README_GIF.md)*
+*Actual local app capture with fictional resumes. Salty Pink palette with locally bundled Cormorant Garamond and Inter fonts. [Still screenshot](assets/demo.png) · [Reproduce the recording](examples/README_GIF.md)*
 
 ## Try it
 
