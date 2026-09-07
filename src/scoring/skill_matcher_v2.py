@@ -3,7 +3,7 @@ from functools import lru_cache
 from typing import Dict
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from src.retrieval.embeddings import get_embedding_model
 
 
 VERSION = "v2"
@@ -41,7 +41,7 @@ WORD_RE = re.compile(r"[a-zA-Z][a-zA-Z0-9+#./-]{1,}")
 
 @lru_cache(maxsize=1)
 def get_embedder():
-    return SentenceTransformer("all-MiniLM-L6-v2")
+    return get_embedding_model()
 
 
 def normalize_text(text: str) -> str:
@@ -58,7 +58,7 @@ def extract_skill_terms(text: str):
     found = []
     for canonical, aliases in SKILL_ALIASES.items():
         for alias in aliases:
-            if alias in normalized:
+            if re.search(r"(?<!\w)" + re.escape(alias) + r"(?!\w)", normalized):
                 found.append(canonical)
                 break
     return sorted(set(found))
@@ -83,12 +83,14 @@ def semantic_similarity(resume_text: str, job_description: str) -> float:
     return float(np.dot(vectors[0], vectors[1]))
 
 
-def compute_match_score(resume_text: str, job_description: str) -> Dict:
+def compute_match_score(resume_text: str, job_description: str, *, strict: bool = False) -> Dict:
     resume_text = (resume_text or "").strip()
     job_description = (job_description or "").strip()
 
     if not resume_text or not job_description:
         return {
+            "mode": "empty",
+            "warning": None,
             "score": 0.0,
             "semantic_score": 0.0,
             "keyword_score": 0.0,
@@ -108,17 +110,25 @@ def compute_match_score(resume_text: str, job_description: str) -> Dict:
 
     keyword_score = len(matched_terms) / max(len(job_skills), 1)
 
+    mode = "hybrid"
+    warning = None
     try:
         semantic_score = semantic_similarity(resume_text, job_description)
-    except Exception:
-        semantic_score = keyword_score
+    except Exception as exc:
+        if strict:
+            raise RuntimeError("Embedding inference failed; evaluation stopped.") from exc
+        semantic_score = None
+        mode = "keyword_fallback"
+        warning = "Embedding model unavailable. Showing keyword-only scores."
 
-    combined_score = (0.75 * semantic_score) + (0.25 * keyword_score)
+    combined_score = keyword_score if semantic_score is None else (0.75 * semantic_score) + (0.25 * keyword_score)
 
     return {
+        "mode": mode,
+        "warning": warning,
         "score": round(combined_score * 100, 2),
-        "semantic_score": round(semantic_score * 100, 2),
+        "semantic_score": round(semantic_score * 100, 2) if semantic_score is not None else None,
         "keyword_score": round(keyword_score * 100, 2),
-        "matched_terms": matched_terms[:20] if matched_terms else matched_generic[:20],
+        "matched_terms": matched_terms[:20],
         "missing_terms": missing_skill_terms[:20],
     }

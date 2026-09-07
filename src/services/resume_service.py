@@ -10,12 +10,15 @@ def process_uploaded_resume(uploaded_file) -> Dict:
     """
     Takes a Streamlit uploaded file, extracts text, and builds a structured profile.
     """
+    uploaded_file.seek(0)
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         tmp.write(uploaded_file.read())
         temp_path = tmp.name
 
     try:
         raw_text = extract_text_from_pdf(temp_path)
+        if not raw_text.strip():
+            raise ValueError("No readable text found. Use a text-based PDF; OCR is not supported.")
         profile = build_resume_profile(raw_text)
 
         return {

@@ -1,0 +1,610 @@
+{
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "model_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+  "fixture_sha256": "db43ab44a2e231388bdc8a3ce53f6d95142ca8b062058c06e832f2cc3c7dd0d6",
+  "packages": {
+    "sentence-transformers": "5.7.0",
+    "torch": "2.14.0",
+    "numpy": "2.4.6"
+  },
+  "weights": {
+    "semantic": 0.75,
+    "keyword": 0.25
+  },
+  "tie_break": "resume ID ascending",
+  "mean_ndcg_at_3": {
+    "keyword": 0.7828086170183797,
+    "semantic": 0.9490889629204355,
+    "hybrid": 0.8439432022961455
+  },
+  "jobs": [
+    {
+      "job": "nlp_search",
+      "methods": {
+        "keyword": {
+          "ndcg_at_3": 0.5474918470265493,
+          "ranking": [
+            "nlp",
+            "stuffing",
+            "research",
+            "search",
+            "backend",
+            "data",
+            "junior",
+            "ml",
+            "paraphrase",
+            "vision",
+            "analytics",
+            "frontend"
+          ],
+          "scores": [
+            100.0,
+            100.0,
+            66.67,
+            66.67,
+            33.33,
+            33.33,
+            33.33,
+            33.33,
+            33.33,
+            33.33,
+            0.0,
+            0.0
+          ]
+        },
+        "semantic": {
+          "ndcg_at_3": 1.0,
+          "ranking": [
+            "nlp",
+            "search",
+            "paraphrase",
+            "research",
+            "stuffing",
+            "ml",
+            "backend",
+            "junior",
+            "data",
+            "vision",
+            "analytics",
+            "frontend"
+          ],
+          "scores": [
+            86.46,
+            66.52,
+            63.24,
+            61.09,
+            55.86,
+            40.76,
+            39.37,
+            39.36,
+            39.03,
+            36.52,
+            34.77,
+            31.8
+          ]
+        },
+        "hybrid": {
+          "ndcg_at_3": 0.7039180890341348,
+          "ranking": [
+            "nlp",
+            "stuffing",
+            "search",
+            "research",
+            "paraphrase",
+            "ml",
+            "backend",
+            "junior",
+            "data",
+            "vision",
+            "analytics",
+            "frontend"
+          ],
+          "scores": [
+            89.85,
+            66.9,
+            66.56,
+            62.49,
+            55.76,
+            38.9,
+            37.86,
+            37.85,
+            37.61,
+            35.73,
+            26.08,
+            23.85
+          ]
+        }
+      }
+    },
+    {
+      "job": "ml_serving",
+      "methods": {
+        "keyword": {
+          "ndcg_at_3": 0.8472668887613066,
+          "ranking": [
+            "ml",
+            "stuffing",
+            "backend",
+            "junior",
+            "vision",
+            "data",
+            "nlp",
+            "research",
+            "search",
+            "analytics",
+            "frontend",
+            "paraphrase"
+          ],
+          "scores": [
+            100.0,
+            100.0,
+            75.0,
+            50.0,
+            50.0,
+            25.0,
+            25.0,
+            25.0,
+            25.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "semantic": {
+          "ndcg_at_3": 0.8472668887613066,
+          "ranking": [
+            "ml",
+            "stuffing",
+            "vision",
+            "backend",
+            "junior",
+            "nlp",
+            "data",
+            "analytics",
+            "research",
+            "frontend",
+            "paraphrase",
+            "search"
+          ],
+          "scores": [
+            86.97,
+            62.3,
+            60.09,
+            53.91,
+            48.84,
+            42.05,
+            41.44,
+            41.04,
+            40.3,
+            37.68,
+            31.46,
+            30.62
+          ]
+        },
+        "hybrid": {
+          "ndcg_at_3": 0.8472668887613066,
+          "ranking": [
+            "ml",
+            "stuffing",
+            "backend",
+            "vision",
+            "junior",
+            "nlp",
+            "data",
+            "research",
+            "analytics",
+            "search",
+            "frontend",
+            "paraphrase"
+          ],
+          "scores": [
+            90.23,
+            71.72,
+            59.18,
+            57.57,
+            49.13,
+            37.79,
+            37.33,
+            36.48,
+            30.78,
+            29.22,
+            28.26,
+            23.59
+          ]
+        }
+      }
+    },
+    {
+      "job": "data_platform",
+      "methods": {
+        "keyword": {
+          "ndcg_at_3": 0.7002755876478819,
+          "ranking": [
+            "backend",
+            "data",
+            "stuffing",
+            "search",
+            "analytics",
+            "junior",
+            "ml",
+            "nlp",
+            "research",
+            "vision",
+            "frontend",
+            "paraphrase"
+          ],
+          "scores": [
+            100.0,
+            100.0,
+            100.0,
+            66.67,
+            33.33,
+            33.33,
+            33.33,
+            33.33,
+            33.33,
+            33.33,
+            0.0,
+            0.0
+          ]
+        },
+        "semantic": {
+          "ndcg_at_3": 1.0,
+          "ranking": [
+            "data",
+            "backend",
+            "analytics",
+            "stuffing",
+            "ml",
+            "search",
+            "research",
+            "nlp",
+            "junior",
+            "vision",
+            "paraphrase",
+            "frontend"
+          ],
+          "scores": [
+            95.42,
+            63.93,
+            49.49,
+            48.82,
+            44.23,
+            39.21,
+            32.68,
+            32.13,
+            31.37,
+            29.46,
+            27.0,
+            24.96
+          ]
+        },
+        "hybrid": {
+          "ndcg_at_3": 0.878961873034099,
+          "ranking": [
+            "data",
+            "backend",
+            "stuffing",
+            "search",
+            "analytics",
+            "ml",
+            "research",
+            "nlp",
+            "junior",
+            "vision",
+            "paraphrase",
+            "frontend"
+          ],
+          "scores": [
+            96.56,
+            72.94,
+            61.62,
+            46.08,
+            45.45,
+            41.5,
+            32.84,
+            32.43,
+            31.86,
+            30.43,
+            20.25,
+            18.72
+          ]
+        }
+      }
+    },
+    {
+      "job": "analytics_dashboard",
+      "methods": {
+        "keyword": {
+          "ndcg_at_3": 0.8472668887613066,
+          "ranking": [
+            "analytics",
+            "stuffing",
+            "junior",
+            "backend",
+            "data",
+            "ml",
+            "search",
+            "frontend",
+            "nlp",
+            "paraphrase",
+            "research",
+            "vision"
+          ],
+          "scores": [
+            100.0,
+            100.0,
+            66.67,
+            33.33,
+            33.33,
+            33.33,
+            33.33,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "semantic": {
+          "ndcg_at_3": 0.8472668887613066,
+          "ranking": [
+            "analytics",
+            "stuffing",
+            "data",
+            "junior",
+            "ml",
+            "backend",
+            "nlp",
+            "search",
+            "research",
+            "frontend",
+            "paraphrase",
+            "vision"
+          ],
+          "scores": [
+            92.54,
+            47.01,
+            42.76,
+            42.68,
+            38.61,
+            36.36,
+            33.95,
+            32.83,
+            30.83,
+            26.14,
+            23.02,
+            18.17
+          ]
+        },
+        "hybrid": {
+          "ndcg_at_3": 0.8472668887613066,
+          "ranking": [
+            "analytics",
+            "stuffing",
+            "junior",
+            "data",
+            "ml",
+            "backend",
+            "search",
+            "nlp",
+            "research",
+            "frontend",
+            "paraphrase",
+            "vision"
+          ],
+          "scores": [
+            94.4,
+            60.25,
+            48.68,
+            40.4,
+            37.29,
+            35.6,
+            32.95,
+            25.46,
+            23.12,
+            19.6,
+            17.26,
+            13.63
+          ]
+        }
+      }
+    },
+    {
+      "job": "backend_api",
+      "methods": {
+        "keyword": {
+          "ndcg_at_3": 0.8472668887613066,
+          "ranking": [
+            "backend",
+            "stuffing",
+            "data",
+            "ml",
+            "search",
+            "vision",
+            "analytics",
+            "junior",
+            "nlp",
+            "research",
+            "frontend",
+            "paraphrase"
+          ],
+          "scores": [
+            100.0,
+            100.0,
+            60.0,
+            60.0,
+            40.0,
+            40.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            0.0,
+            0.0
+          ]
+        },
+        "semantic": {
+          "ndcg_at_3": 1.0,
+          "ranking": [
+            "backend",
+            "data",
+            "ml",
+            "stuffing",
+            "frontend",
+            "analytics",
+            "junior",
+            "search",
+            "nlp",
+            "research",
+            "vision",
+            "paraphrase"
+          ],
+          "scores": [
+            92.9,
+            64.73,
+            55.36,
+            50.76,
+            43.53,
+            41.95,
+            35.94,
+            32.47,
+            28.33,
+            27.92,
+            25.97,
+            20.44
+          ]
+        },
+        "hybrid": {
+          "ndcg_at_3": 0.878961873034099,
+          "ranking": [
+            "backend",
+            "data",
+            "stuffing",
+            "ml",
+            "analytics",
+            "search",
+            "frontend",
+            "junior",
+            "vision",
+            "nlp",
+            "research",
+            "paraphrase"
+          ],
+          "scores": [
+            94.68,
+            63.54,
+            63.07,
+            56.52,
+            36.46,
+            34.35,
+            32.65,
+            31.96,
+            29.48,
+            26.24,
+            25.94,
+            15.33
+          ]
+        }
+      }
+    },
+    {
+      "job": "language_research",
+      "methods": {
+        "keyword": {
+          "ndcg_at_3": 0.9072836011519267,
+          "ranking": [
+            "nlp",
+            "research",
+            "stuffing",
+            "backend",
+            "data",
+            "junior",
+            "ml",
+            "search",
+            "vision",
+            "analytics",
+            "frontend",
+            "paraphrase"
+          ],
+          "scores": [
+            100.0,
+            100.0,
+            100.0,
+            50.0,
+            50.0,
+            50.0,
+            50.0,
+            50.0,
+            50.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "semantic": {
+          "ndcg_at_3": 1.0,
+          "ranking": [
+            "research",
+            "nlp",
+            "search",
+            "paraphrase",
+            "stuffing",
+            "junior",
+            "ml",
+            "analytics",
+            "data",
+            "vision",
+            "backend",
+            "frontend"
+          ],
+          "scores": [
+            87.99,
+            73.14,
+            54.36,
+            43.32,
+            42.88,
+            38.27,
+            38.19,
+            33.58,
+            28.57,
+            27.6,
+            19.66,
+            13.22
+          ]
+        },
+        "hybrid": {
+          "ndcg_at_3": 0.9072836011519267,
+          "ranking": [
+            "research",
+            "nlp",
+            "stuffing",
+            "search",
+            "junior",
+            "ml",
+            "data",
+            "vision",
+            "paraphrase",
+            "backend",
+            "analytics",
+            "frontend"
+          ],
+          "scores": [
+            90.99,
+            79.86,
+            57.16,
+            53.27,
+            41.2,
+            41.14,
+            33.92,
+            33.2,
+            32.49,
+            27.24,
+            25.19,
+            9.92
+          ]
+        }
+      }
+    }
+  ]
+}
