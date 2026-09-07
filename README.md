@@ -1,11 +1,13 @@
 # AI Resume Copilot
 
-**Match resumes to a role—and inspect the evidence.**
+**Find the fit. See the potential.**
 
 [![Tests](https://github.com/CodeByVish/resume-intelligence-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/CodeByVish/resume-intelligence-engine/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 
-An explainable resume-matching prototype for recruiters comparing candidates and individuals checking their resume against a job description. Built with sentence-transformer embeddings, skill coverage, FAISS retrieval, and Streamlit.
+An explainable resume-matching prototype for recruiters and HR teams. Compare candidate resumes against your open role, explore relevant experience, and build a more informed shortlist. Built with sentence-transformer embeddings, skill coverage, FAISS retrieval, and Streamlit.
+
+Individuals can also upload a single resume to check its alignment with a job description.
 
 ![Demo: upload three fictional PDFs, compare matches, and retrieve supporting resume excerpts](assets/demo.gif)
 
@@ -44,6 +46,7 @@ A clean macOS arm64 / Python 3.11 install was verified. [requirements-tested.txt
 - Extracts PDF text and structured sections: skills, experience, education, and projects.
 - Ranks single or multiple resumes against a job description.
 - Displays semantic similarity, skill coverage, matched skills, and missing mentions.
+- Presents ranked candidate cards with skill chips and missing mentions; the **Compare all scores** tab provides a detailed comparison table.
 - Retrieves source excerpts with filenames using a FAISS index.
 - Preserves rankings during evidence searches and clears stale results when inputs change.
 - Shows an explicit keyword-only fallback warning if the embedding model fails.
