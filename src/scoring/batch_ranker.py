@@ -17,6 +17,8 @@ def rank_resumes(resume_profiles: List[Dict], job_description: str) -> pd.DataFr
         rows.append(
             {
                 "filename": filename,
+                "mode": result["mode"],
+                "warning": result["warning"],
                 "score": result.get("score", 0.0),
                 "semantic_score": result.get("semantic_score", 0.0),
                 "keyword_score": result.get("keyword_score", 0.0),

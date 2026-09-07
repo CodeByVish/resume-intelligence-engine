@@ -1,0 +1,163 @@
+{
+  "description": "Author-defined synthetic sanity check. Labels fixed before running. 0 irrelevant, 1 partial, 2 strong. Not a hiring benchmark.",
+  "resumes": [
+    {
+      "id": "nlp",
+      "text": "NLP specialist. Python, natural language processing, vector search. Built and evaluated semantic document search and text classification systems."
+    },
+    {
+      "id": "search",
+      "text": "Search engineer. Python and SQL. Implemented sentence embeddings and retrieval for a document processing service. Measured relevance with human judgments."
+    },
+    {
+      "id": "ml",
+      "text": "Machine learning engineer. Python, scikit-learn, pandas, FastAPI. Trained classifiers, served models through REST APIs and monitored model drift."
+    },
+    {
+      "id": "data",
+      "text": "Data engineer. SQL, Python, AWS. Built reliable ETL pipelines and database transformations with data quality checks."
+    },
+    {
+      "id": "analytics",
+      "text": "Data analyst. SQL, pandas, dashboard. Built reports and analyzed customer retention. Limited model development experience."
+    },
+    {
+      "id": "backend",
+      "text": "Backend engineer. Python, FastAPI, REST API, PostgreSQL, AWS. Built transaction APIs and production service monitoring."
+    },
+    {
+      "id": "vision",
+      "text": "Computer vision engineer. Python and deep learning. Trained image classifiers and object detection models; deployed image inference APIs."
+    },
+    {
+      "id": "research",
+      "text": "Language researcher. Natural language processing and Python. Investigated text classification and evaluated transformer models; no production deployment."
+    },
+    {
+      "id": "junior",
+      "text": "Student. Python, pandas, scikit-learn and Streamlit. Built a small classification notebook and interactive dashboard for coursework."
+    },
+    {
+      "id": "frontend",
+      "text": "Frontend developer. JavaScript, CSS and HTML. Built accessible websites and browser interfaces."
+    },
+    {
+      "id": "stuffing",
+      "text": "Office assistant. Skills wishlist: Python, SQL, AWS, NLP, vector search, pandas, scikit-learn, FastAPI, REST API, Streamlit, dashboard. No hands-on technical projects or engineering experience."
+    },
+    {
+      "id": "paraphrase",
+      "text": "Information retrieval developer. Built systems that encode sentences into dense vectors and find documents with similar meanings. Evaluated nearest-neighbor search quality and deployed a document lookup service."
+    }
+  ],
+  "jobs": [
+    {
+      "id": "nlp_search",
+      "text": "NLP engineer with Python, natural language processing and vector search. Must have built semantic document retrieval systems.",
+      "relevance": {
+        "nlp": 2,
+        "search": 2,
+        "ml": 1,
+        "data": 0,
+        "analytics": 0,
+        "backend": 0,
+        "vision": 0,
+        "research": 1,
+        "junior": 1,
+        "frontend": 0,
+        "stuffing": 0,
+        "paraphrase": 2
+      }
+    },
+    {
+      "id": "ml_serving",
+      "text": "Machine learning engineer with Python, scikit-learn, FastAPI and REST API skills. Train classifiers and deploy monitored model services.",
+      "relevance": {
+        "nlp": 1,
+        "search": 0,
+        "ml": 2,
+        "data": 0,
+        "analytics": 0,
+        "backend": 1,
+        "vision": 1,
+        "research": 1,
+        "junior": 1,
+        "frontend": 0,
+        "stuffing": 0,
+        "paraphrase": 0
+      }
+    },
+    {
+      "id": "data_platform",
+      "text": "Data engineer with SQL, Python and AWS. Build ETL pipelines, database transformations and data quality checks.",
+      "relevance": {
+        "nlp": 0,
+        "search": 1,
+        "ml": 0,
+        "data": 2,
+        "analytics": 1,
+        "backend": 1,
+        "vision": 0,
+        "research": 0,
+        "junior": 0,
+        "frontend": 0,
+        "stuffing": 0,
+        "paraphrase": 0
+      }
+    },
+    {
+      "id": "analytics_dashboard",
+      "text": "Data analyst with SQL, pandas and dashboard skills. Analyze customer retention and build reports.",
+      "relevance": {
+        "nlp": 0,
+        "search": 0,
+        "ml": 0,
+        "data": 1,
+        "analytics": 2,
+        "backend": 0,
+        "vision": 0,
+        "research": 0,
+        "junior": 1,
+        "frontend": 0,
+        "stuffing": 0,
+        "paraphrase": 0
+      }
+    },
+    {
+      "id": "backend_api",
+      "text": "Backend engineer with Python, FastAPI, REST API, SQL and AWS. Build transaction services and monitor production APIs.",
+      "relevance": {
+        "nlp": 0,
+        "search": 1,
+        "ml": 1,
+        "data": 1,
+        "analytics": 0,
+        "backend": 2,
+        "vision": 1,
+        "research": 0,
+        "junior": 0,
+        "frontend": 0,
+        "stuffing": 0,
+        "paraphrase": 0
+      }
+    },
+    {
+      "id": "language_research",
+      "text": "NLP researcher with Python and natural language processing. Evaluate transformer models for text classification.",
+      "relevance": {
+        "nlp": 2,
+        "search": 1,
+        "ml": 1,
+        "data": 0,
+        "analytics": 0,
+        "backend": 0,
+        "vision": 0,
+        "research": 2,
+        "junior": 1,
+        "frontend": 0,
+        "stuffing": 0,
+        "paraphrase": 1
+      }
+    }
+  ]
+}

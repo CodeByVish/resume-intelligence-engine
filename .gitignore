@@ -1,7 +1,16 @@
-.venv/
+.venv*/
 __pycache__/
 *.pyc
-.streamlit/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+.DS_Store
+.gif_tmp/
+.cache/
+playwright-report/
 data/sample_resumes/*
 data/sample_jobs/*
-.env
+
+# Keep original local resumes out of the public demo.
+/sample_resume_*.pdf

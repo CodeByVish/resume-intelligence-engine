@@ -1,255 +1,99 @@
-# 🚀 Resume Intelligence Platform
+# AI Resume Copilot
 
-An end-to-end AI Engineering project that transforms unstructured resumes into an intelligent, searchable knowledge base using NLP, semantic retrieval, vector search, and Retrieval-Augmented Generation (RAG).
+**Match resumes to a role—and inspect the evidence.**
 
-<p align="center">
-  <strong>NLP</strong> •
-  <strong>Semantic Search</strong> •
-  <strong>Vector Databases</strong> •
-  <strong>RAG</strong> •
-  <strong>Streamlit</strong> •
-  <strong>LangChain</strong> •
-  <strong>FAISS</strong>
-</p>
+[![Tests](https://github.com/CodeByVish/resume-intelligence-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/CodeByVish/resume-intelligence-engine/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 
----
+An explainable resume-matching prototype for recruiters comparing candidates and individuals checking their resume against a job description. Built with sentence-transformer embeddings, skill coverage, FAISS retrieval, and Streamlit.
 
-## 🌸 Overview
+![Demo: upload three fictional PDFs, compare matches, and retrieve supporting resume excerpts](assets/demo.gif)
 
-Recruiters spend hours manually reviewing resumes, comparing applicants, identifying skill gaps, and deciding who deserves an interview.
+*Actual local app capture with fictional resumes. [Still screenshot](assets/demo.png) · [Reproduce the recording](examples/README_GIF.md)*
 
-Traditional Applicant Tracking Systems (ATS) mostly rely on keyword matching, often missing highly qualified candidates simply because they use different wording.
+## Try it
 
-**Resume Intelligence Platform** approaches the problem differently.
-
-Instead of treating resumes as plain text documents, it converts them into structured knowledge that can be searched, ranked, retrieved, and queried using modern AI techniques.
-
-The project combines classical NLP with semantic embeddings, vector search, and Retrieval-Augmented Generation (RAG) to create an explainable AI assistant for recruiters.
-
----
-
-## 🎬 Demo
-
-### 📹 Demo GIF
-
-Replace this section with a GIF of the Streamlit application once complete.
-
----
-
-## 📸 Screenshots
-
-### Home Dashboard
-
-Insert screenshot here.
-
-### Resume Parsing
-
-Insert screenshot here.
-
-### Semantic Matching
-
-Insert screenshot here.
-
-### Candidate Ranking
-
-Insert screenshot here after batch ranking is implemented.
-
-### RAG Chat Assistant
-
-Insert screenshot after implementation.
-
----
-
-## ✨ Features
-
-### Document Intelligence
-
-- PDF resume parsing
-- Automatic resume section detection
-- Contact information extraction
-- Structured candidate profiles
-- Resume normalization
-
-### Semantic Candidate Matching
-
-- Resume ↔ job description matching
-- Embedding-based similarity
-- Skill-aware matching
-- Explainable match scores
-- Missing skill detection
-
-### AI & Retrieval
-
-- Dense vector embeddings
-- FAISS vector database
-- Resume chunking
-- Semantic resume search
-- Retrieval-Augmented Generation (RAG)
-
-### Recruiter Experience
-
-- Candidate ranking
-- Multi-resume upload
-- Resume comparison
-- Interview question generation
-- AI recruiter assistant
-
----
-
-## 🧠 AI Pipeline
-
-```text
-                        Resume PDFs
-                              │
-                              ▼
-                  Document Parsing Pipeline
-                              │
-                              ▼
-                 Structured Resume Profiles
-                              │
-                              ▼
-                 Skill Extraction + NLP
-                              │
-                              ▼
-                  Embedding Generation
-                              │
-                              ▼
-                     FAISS Vector Store
-                              │
-                              ▼
-              Semantic Resume Retrieval
-                              │
-                              ▼
-             Retrieval-Augmented Generation
-                              │
-                              ▼
-                Recruiter AI Assistant
-```
-
----
-
-## ⚙ Tech Stack
-
-| Layer | Technology |
-| --- | --- |
-| Language | Python |
-| Frontend | Streamlit |
-| Document Parsing | PyMuPDF |
-| NLP | spaCy |
-| Embeddings | Sentence Transformers |
-| Similarity | scikit-learn |
-| Vector Search | FAISS |
-| RAG Framework | LangChain |
-| Agent Workflow | LangGraph |
-| Data Processing | pandas, NumPy |
-
----
-
-## 📂 Project Structure
-
-```text
-resume-intelligence-engine/
-│
-├── app.py
-│
-├── src/
-│   ├── parsing/
-│   ├── scoring/
-│   ├── retrieval/
-│   ├── llm/
-│   ├── evaluation/
-│   └── utils/
-│
-├── data/
-│
-├── notebooks/
-│
-├── docs/
-│
-└── README.md
-```
-
----
-
-## 🚀 Running Locally
-
-Clone the repository:
+Use Python 3.11 and run these commands from the project root:
 
 ```bash
 git clone https://github.com/CodeByVish/resume-intelligence-engine.git
+cd resume-intelligence-engine
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m streamlit run app.py
 ```
 
-Install dependencies:
+Select **Try three fictional sample resumes**, then **Compare resumes**. Or upload one or more text-based PDFs. Under **Evidence search**, try `semantic search pipelines`.
+
+The pinned MiniLM model downloads on first use; no LLM API key is required. Inference runs locally. Scanned PDFs require OCR, which this prototype does not include.
+
+For development, the CLI demo, and recording:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
+bash examples/demo.sh
+python -m pytest -q
+python -m src.evaluation.run
 ```
 
-Run Streamlit:
+A clean macOS arm64 / Python 3.11 install was verified. [requirements-tested.txt](requirements-tested.txt) records the exact environment used for evaluation; the smaller requirements files define supported package ranges.
 
-```bash
-streamlit run app.py
-```
+## What it does
 
----
+- Extracts PDF text and structured sections: skills, experience, education, and projects.
+- Ranks single or multiple resumes against a job description.
+- Displays semantic similarity, skill coverage, matched skills, and missing mentions.
+- Retrieves source excerpts with filenames using a FAISS index.
+- Preserves rankings during evidence searches and clears stale results when inputs change.
+- Shows an explicit keyword-only fallback warning if the embedding model fails.
 
-## 📊 Example Workflow
+The UI returns retrieved evidence, not generated answers. Legacy rule-based question and answer-template helpers remain in the source but are not used by the demo.
+
+## How it works
 
 ```text
-Upload Resume(s)
-       ↓
-Parse Resume
-       ↓
-Extract Skills & Experience
-       ↓
-Generate Embeddings
-       ↓
-Compare Against Job Description
-       ↓
-Rank Candidates
-       ↓
-Retrieve Supporting Evidence
-       ↓
-Ask AI Questions
-       ↓
-Generate Interview Questions
+PDFs → PyMuPDF → text → structured profiles
+                  ├→ MiniLM embeddings + job embedding → cosine similarity ┐
+                  ├→ boundary-aware skill aliases → job-skill coverage     ├→ ranking
+                  └→ overlapping text chunks → MiniLM → FAISS → excerpts
 ```
 
----
+The app and CLI share the same scorer:
 
-## 🎯 Engineering Highlights
+```text
+keyword = recognized job skills found in resume / recognized job skills
+hybrid  = 100 × (0.75 × cosine similarity + 0.25 × keyword)
+```
 
-This repository demonstrates practical AI Engineering concepts including:
+Keyword coverage is zero when no job skills are recognized. Weights are fixed heuristics, not learned parameters. Scores are not hiring probabilities. Missing skills mean no recognized mention was found, and excerpts are supporting source text—not mathematical attributions of the embedding score.
 
-- NLP pipelines
-- Information extraction
-- Semantic search
-- Dense vector embeddings
-- Vector databases
-- Retrieval-Augmented Generation (RAG)
-- Explainable AI
-- Streamlit application development
-- Modular Python architecture
+## Evaluation: compare against baselines
 
----
+12 fictional profiles × 6 job descriptions, with 72 author-labeled relevance judgments. Labels and weights were fixed before running. Higher nDCG@3 means more relevant profiles appear near the top.
 
-## 🔮 Future Enhancements
+| Method | Mean nDCG@3 |
+| --- | ---: |
+| Keyword coverage | 0.783 |
+| Semantic similarity | **0.949** |
+| 75/25 hybrid | 0.844 |
 
-- Fine-tuned resume skill extraction
-- ATS compatibility analysis
-- Resume quality scoring
-- Multi-agent recruiter workflow
-- Recruiter analytics dashboard
-- Cloud deployment
+**Semantic-only performed best on this fixture.** The hybrid improved on keyword coverage but was more vulnerable to keyword stuffing than semantic-only ranking. For the NLP search role, a profile describing dense retrieval without dictionary keywords ranked third under semantic scoring and fifth under hybrid scoring.
 
----
+The app retains the original hybrid formula so its behavior and weaknesses are inspectable. These results do not justify claiming the hybrid is the best method. This small synthetic sanity check is not a real-world hiring benchmark.
 
-## 🤝 Contributing
+[Per-job results and failure cases](docs/evaluation.md) · [Full rankings, model revision, and fixture hash](docs/evaluation-results.json) · [Labeled fixture](data/evaluation/benchmark.json)
 
-Contributions, discussions, and ideas are always welcome.
+## Validation and limits
 
----
+- 10 automated tests cover scoring, aliases, false substring matches, explicit model failures, PDF uploads, FAISS source attribution, ranking metrics, and Streamlit result persistence.
+- GitHub Actions runs tests with model downloads disabled; unit tests use controlled embeddings.
+- The browser capture script verifies real batch ranking, evidence retrieval, and a fresh single-resume upload. Desktop and mobile screenshots were inspected locally.
+- Parsing is heuristic, the skill dictionary is small, and whole-resume embeddings may truncate long documents. Keyword mentions do not prove experience or competence.
+- No model training, generative LLM, production deployment, or validated hiring outcomes are claimed.
 
-## ⭐ If you enjoyed this project...
+## Interview and resume
 
-Consider giving it a ⭐ on GitHub!
+> Built an explainable resume-matching application using MiniLM embeddings, hybrid skill scoring, and FAISS evidence retrieval; compared three ranking methods on 72 synthetic resume–job pairs and documented keyword-stuffing failure cases.
+
+[Interview outline and project scope](docs/portfolio-plan.md)
